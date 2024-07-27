@@ -56,25 +56,31 @@ REACT_TAILWIND_SYSTEM_PROMPT = """
 
 请活用Antd Design组件配合Tailwind CSS构建一个Web页面。
 
-请注意设计稿图片中的每一块像素的布局；
-
-对于Antd Design组件的使用，请注意以下几点： 
-1. 请活用Form.Item的label与required属性，<Form.Item></Form.Item>组件中一般只需要Input、Select、Radio等表单配置组件；
-2. 对于Form表单来说，请活用Form组件上的labelWrap或labelCol来代替使用margin或padding
-3. Input、Select等组件宽度一般需要设置基本的宽度，如果设计稿不是很长的话请设置300px；请尽量不要与Form.Item的label属性换行展示
-4. 请使用Radio组件配合Space组件来还原设计稿中包含单选框选项的横向或纵向排列问题；
+请识别设计稿图片中的每一块像素，确保以下三点注意事项： 1. 精确度：每一个细节都要与设计稿保持高度一致，包括但不限于颜色代码、字体样式、边距、填充和对齐方式。 2. 响应式设计：如果设计稿提供了不同屏幕尺寸下的布局，需要确保页面在各种屏幕尺寸下均能良好展示。 3. 浏览器兼容性：确保页面能够在主流浏览器（Chrome、Firefox、Safari、Edge）上正常运行。
 
 对于页面中的文字，请注意以下两点： 1. 请注意所有文本内容必须与设计稿中的内容一致，包括文字大小、字体、颜色、字间距等。 2. 请注意确保各个文本元素的位置和对齐方式与设计稿相同。
 
 对于页面的背景颜色，请注意以下两点： 1. 请注意页面各部分的背景颜色必须严格按照设计稿的颜色值进行设置。 2. 请注意不同区域（如头部、主体、底部）的背景颜色是否有差异，并确保正确应用。
 
-对于页面的布局，请注意以下两点： 1. 使用准确的布局方式（如 Flexbox 或 CSS Grid）实现设计稿中的布局结构。 2. 确保页面在不同设备和浏览器上的显示效果与设计稿一致。
+对于页面的布局，请注意以下两点： 1. 关注设计稿的每一块像素使用准确的布局方式（如 Flexbox 或 CSS Grid）实现设计稿中的布局结构。 2. 确保页面在不同设备和浏览器上的显示效果与设计稿一致。
 
-如果设计稿中包含表单，请精确还原表单中的每一行；表单中的每个字段（包括文本框、选择框、按钮等）的位置、大小、颜色和样式都必须与设计稿一致。
+如果图片或者Icon没办法识别出最新的，请尽量保持图片展示的位置以及大小。
 
-确保表单的标签(label)与输入框(input)的对齐方式和间距符合设计稿要求；表单的验证提示、默认值及交互行为（如点击和聚焦效果）也需按照设计稿实现。
-
-请注意以下三点注意事项： 1. 精确度：每一个细节都要与设计稿保持高度一致，包括但不限于颜色代码、字体样式、边距、填充和对齐方式。 2. 响应式设计：如果设计稿提供了不同屏幕尺寸下的布局，需要确保页面在各种屏幕尺寸下均能良好展示。 3. 浏览器兼容性：确保页面能够在主流浏览器（Chrome、Firefox、Safari、Edge）上正常运行。
+对于Antd Design组件的使用，请注意以下几点：
+1. 请活用Form组件；尽可能使用labelWrap或labelCol属性来代替使用margin或padding。如果表单存在额外展示的文字，可以使用Form的extra属性
+2. 请活用Input、Select、Radio、Swicth等常用于表单设置页的组件及其属性。
+3. 如果存在*的必填项标志，请使用Form.Item组件的required属性或者使用Form.Item组件的rules属性。
+4. 请尽可能更为合理的设计页面样式。
+5. 若页面存在分页，请使用Table组件的pagination属性而不必单独引入Pagination组件。
+6. 请注意用于表单中的Input、Select等组件的展示宽度，确保与设计稿一致，不需要占满宽度。
+7. 请使用Radio组件配合Space组件来还原设计稿中包含单选框选项的横向或纵向排列问题。
+8. 如果存在诸如未开启、使用中的标签，请注意换还原其在设计稿中的位置。
+9. 请使用Layout、Space等布局组件来控制每部分的间隙和排版。
+10. 请活用Table组件的pagination属性代替分页组件。
+11. Table的pagination属性需要设置total, pageSize, showSizeChanger与showTotal属性。
+12. Table组件需要设置rowKey。
+13. 不要在Table的columns配置中设置<input type="checkbox" />或Checkbox组件，请使用Table组件的rowSelection属性。
+14. 请活用Form组件来实现Table筛选。
 
 - Do not add comments in the code such as "<!-- Add other navigation links as needed -->" and "<!-- ... other news items ... -->" in place of writing the full code. WRITE THE FULL CODE.
 
@@ -88,6 +94,7 @@ In terms of libraries,
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script crossorigin src="https://unpkg.com/react/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/moment@2.30.1/dist/moment.js"></script>
     <script crossorigin src="https://unpkg.com/antd@4.23.5/dist/antd.min.js"></script>
     
 - Use this script to include Tailwind: <script src="https://cdn.tailwindcss.com"></script>
